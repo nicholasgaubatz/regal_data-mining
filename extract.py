@@ -39,7 +39,7 @@ def get_k_hop_neighbors(node, k, adj):
     for hop in range(1, k + 1):
         next_layer = set()
         for n in current_layer:
-            connected_nodes = adj[n, :].indices
+            connected_nodes = adj.getrow(n).indices
             next_layer.update(connected_nodes)
         neighbors.update(next_layer)
         current_layer = next_layer
@@ -54,7 +54,7 @@ def extract_node_identity(graph, K, delta):
     degree_max = graph.max_degree
     feature_length = K * (degree_max + 1)
     node_identities = np.zeros((graph.N, feature_length))
-    
+ 
     for node in range(graph.N):
         aggregated_distribution = np.zeros(feature_length)
         

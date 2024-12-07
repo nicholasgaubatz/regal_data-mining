@@ -72,6 +72,7 @@ def compute_representation(C, landmarks, n_1):
     Sigma = np.diag(Sigma) # Diagonalization of resulting vector
     Y_twiddle = C @ U @ np.sqrt(Sigma) # Matrix multiplication
     Y_twiddle = Y_twiddle / np.linalg.norm(Y_twiddle, axis=1).reshape(Y_twiddle.shape[0], 1) # Normalization of rows
+    
     Y_twiddle_1, Y_twiddle_2 = Y_twiddle[:n_1, :], Y_twiddle[n_1:, :] # Split representations for nodes in G_1, G_2
 
     return Y_twiddle_1, Y_twiddle_2
